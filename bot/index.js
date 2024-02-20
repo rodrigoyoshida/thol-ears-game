@@ -57,8 +57,8 @@ app.post('/score', async (req, res) => {
 })
 
 if (SSL_ENABLED) {
-  var privateKey = fs.readFileSync(SSL_KEY_PATH);
-  var certificate = fs.readFileSync(SSL_CERT_PATH);
+  const privateKey = fs.readFileSync(SSL_KEY_PATH);
+  const certificate = fs.readFileSync(SSL_CERT_PATH);
 
   https.createServer({
     key: privateKey,
