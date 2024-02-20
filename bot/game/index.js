@@ -46,9 +46,9 @@ function create () {
   
   platforms = this.physics.add.staticGroup();
   platforms.create(300, 568, 'ground').setScale(2).refreshBody();
-  platforms.create(610, 400, 'ground');
-  platforms.create(40, 250, 'ground');
-  platforms.create(730, 220, 'ground');
+  platforms.create(600, 400, 'ground');
+  platforms.create(40, 260, 'ground');
+  platforms.create(700, 240, 'ground');
 
   player = this.physics.add.sprite(100, 450, 'tython');
   player.setBounce(0.2);
@@ -78,8 +78,8 @@ function create () {
 
   ears = this.physics.add.group({
     key: 'ear',
-    repeat: 9,
-    setXY: { x: 20, y: 0, stepX: 60 }
+    repeat: 6,
+    setXY: { x: 20, y: 0, stepX: 86 }
   });
 
   ears.children.iterate(function (child) {
@@ -153,7 +153,7 @@ function update () {
     const upMovement = y > prevY ? y - prevY : prevY - y
     const movedToSide = sideMovement > upMovement
 
-    if (sideMovement > 5 || upMovement > 5) {
+    if (sideMovement > 8 || upMovement > 8) {
       if (movedToSide && x < prevX) {
         moveLeft()
       } else if (movedToSide && x > prevX) {
@@ -164,25 +164,25 @@ function update () {
     }
   }
 
-  if (cursors.left.isDown) {
+  if (cursors.up.isDown && player.body.touching.down) {
+    moveUp()
+  } else if (cursors.left.isDown) {
     moveLeft()
   } else if (cursors.right.isDown) {
     moveRight()
-  } else if (cursors.up.isDown && player.body.touching.down) {
-    moveUp()
   }
 }
 
 function moveLeft () {
-  player.setVelocityX(-160);
+  player.setVelocityX(-180);
   player.anims.play('left', true);
 }
 
 function moveRight () {
-  player.setVelocityX(160);
+  player.setVelocityX(180);
   player.anims.play('right', true);
 }
 
 function moveUp () {
-  player.setVelocityY(-350);
+  player.setVelocityY(-370);
 }
