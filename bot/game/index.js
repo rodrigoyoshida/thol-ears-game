@@ -128,7 +128,7 @@ function create () {
       message_id: urlParams.get('message_id'),
       chat_id: urlParams.get('chat_id'),
     }
-    fetch('http://ec2-3-15-206-142.us-east-2.compute.amazonaws.com/score', {
+    fetch('https://rodrigoymy.online/score', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(postBody)
