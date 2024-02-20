@@ -2,8 +2,17 @@ import 'dotenv/config'
 import TelegramBot from 'node-telegram-bot-api'
 import express from 'express'
 import cors from 'cors'
+import * as fs from 'fs'
 
-const { BOT_TOKEN, GAME_NAME, GAME_URL, PORT } = process.env
+const {
+  BOT_TOKEN,
+  GAME_NAME,
+  GAME_URL,
+  PORT,
+  SSL_ENABLED,
+  SSL_KEY_PATH,
+  SSL_CERT_PATH
+} = process.env
 
 const bot = new TelegramBot(BOT_TOKEN, { polling: true })
 const app = express()
@@ -46,6 +55,18 @@ app.post('/score', async (req, res) => {
   }
 })
 
-app.listen(PORT, function listen() {
-  console.log(`Server is listening at http://localhost:${PORT}`)
-})
+if (SSL_ENABLED) {
+  var privateKey = fs.readFileSync(SSL_KEY_PATH);
+  var certificate = fs.readFileSync(SSL_CERT_PATH);
+
+  https.createServer({
+    key: privateKey,
+    cert: certificate
+  }, app).listen(PORT, () => {
+    console.log(`Server is listening at http://localhost:${PORT}`)
+  })
+} else {
+  app.listen(PORT, function listen() {
+    console.log(`Server is listening at http://localhost:${PORT}`)
+  })
+}
