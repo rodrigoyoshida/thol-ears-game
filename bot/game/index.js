@@ -10,7 +10,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-        gravity: { y: 300 },
+        gravity: { y: 600 },
         debug: false
     }
   },
@@ -57,20 +57,20 @@ function create () {
   this.anims.create({
     key: 'left',
     frames: this.anims.generateFrameNumbers('tython', { start: 0, end: 3 }),
-    frameRate: 10,
+    frameRate: 15,
     repeat: -1
   });
 
   this.anims.create({
     key: 'turn',
     frames: [ { key: 'tython', frame: 4 } ],
-    frameRate: 20
+    frameRate: 25
   });
 
   this.anims.create({
     key: 'right',
     frames: this.anims.generateFrameNumbers('tython', { start: 5, end: 8 }),
-    frameRate: 10,
+    frameRate: 15,
     repeat: -1
   });
 
@@ -174,15 +174,15 @@ function update () {
 }
 
 function moveLeft () {
-  player.setVelocityX(-180);
+  player.setVelocityX(-200);
   player.anims.play('left', true);
 }
 
 function moveRight () {
-  player.setVelocityX(180);
+  player.setVelocityX(200);
   player.anims.play('right', true);
 }
 
 function moveUp () {
-  player.setVelocityY(-370);
+  player.setVelocityY(-500);
 }
