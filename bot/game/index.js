@@ -10,7 +10,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-        gravity: { y: 600 },
+        gravity: { y: 900 },
         debug: false
     }
   },
@@ -47,11 +47,10 @@ function create () {
   platforms = this.physics.add.staticGroup();
   platforms.create(300, 568, 'ground').setScale(2).refreshBody();
   platforms.create(600, 400, 'ground');
-  platforms.create(40, 260, 'ground');
+  platforms.create(50, 260, 'ground');
   platforms.create(700, 240, 'ground');
 
   player = this.physics.add.sprite(100, 450, 'tython');
-  player.setBounce(0.2);
   player.setCollideWorldBounds(true);
 
   this.anims.create({
@@ -107,7 +106,7 @@ function create () {
       const bomb = bombs.create(x, 16, 'bomb');
       bomb.setBounce(1);
       bomb.setCollideWorldBounds(true);
-      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+      bomb.setVelocity(Phaser.Math.Between(-100, 100), 10);
     }
   }
 
@@ -184,5 +183,5 @@ function moveRight () {
 }
 
 function moveUp () {
-  player.setVelocityY(-500);
+  player.setVelocityY(-640);
 }
