@@ -46,9 +46,9 @@ function create () {
   
   platforms = this.physics.add.staticGroup();
   platforms.create(300, 568, 'ground').setScale(2).refreshBody();
-  platforms.create(600, 400, 'ground');
-  platforms.create(50, 260, 'ground');
-  platforms.create(700, 240, 'ground');
+  platforms.create(620, 400, 'ground');
+  platforms.create(60, 270, 'ground');
+  platforms.create(710, 240, 'ground');
 
   player = this.physics.add.sprite(100, 450, 'tython');
   player.setCollideWorldBounds(true);
@@ -77,8 +77,8 @@ function create () {
 
   ears = this.physics.add.group({
     key: 'ear',
-    repeat: 6,
-    setXY: { x: 20, y: 0, stepX: 86 }
+    repeat: 7,
+    setXY: { x: 20, y: 0, stepX: 74 }
   });
 
   ears.children.iterate(function (child) {
